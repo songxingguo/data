@@ -1,0 +1,86 @@
+<!DOCTYPE >
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>冒泡排序</title>
+	</head>
+	<body>
+		<script type="application/javascript">			
+			var SIMPLE = SIMPLE || {};
+			var NORMAL = NORMAL || {};
+			var BEST = BEST || {};
+						
+			/* 对顺序表arr作交换排序(冒泡排序初级版) */
+			SIMPLE.BubbleSort = function (arr) {
+			  for (var i = 0; i < arr.length; i++) {
+			    for (var j = i + 1; j < arr.length; j++) {
+			       if (arr[i] > arr[j]) {
+			         /* 交换arr[i]和arr[j]的值 */
+			         swap(arr, i, j);
+			       }
+			    }
+			  }
+			}
+			
+			NORMAL.BubbleSort = function (arr) {
+			  for(var i = 0; i < arr.length; i++) {
+			    /* 注意j是从后往前循环 */
+			    for (j = arr.length - 1; j >= i; j--) {
+			      /* 若前者大于后者(注意这里与上一算法差异) */
+			      if (arr[j] > arr[j + 1]) {
+			        /* 交换arr[j]与arr[j+1]的值 */
+			        swap(arr, j, j + 1);
+			      }
+			    }
+			  }
+			}
+			
+			BEST.BubbleSort = function (arr) {
+			  var flag = true;
+			  for (var i = 0; i < arr.length && flag; i++) {
+			    /* 初始为false */
+			    flag = false;
+			    for (var j = arr.length - 1; j >= i; j--) {
+			      if (arr[j ] > arr[j + 1]) {
+			        /* 交换L->r[j]与L->r[j+1]的值 */
+			        swap(arr, j, j + 1);
+			        /* 如果有数据交换，则flag为true */
+			        flag = true;
+			      }
+			    }
+			  }
+			}
+									
+			/* 交换arr中数组下标为i和j的值 */ 
+			function swap(arr, i, j) {
+			  var temp = arr[i];
+			  arr[i] = arr[j];
+			  arr[j] = temp;
+			}
+			
+			// 最简单排序实现
+			document.write("<h2>最简单排序实现</h2>");
+			var arr = [9,1,5,8,3,7,4,6,2];
+			document.write(arr);
+			SIMPLE.BubbleSort(arr);
+			document.write("<br />");
+			document.write(arr);
+			
+			// 冒泡排序算法
+			document.write("<h2>冒泡排序算法</h2>");
+			var arr = [9,1,5,8,3,7,4,6,2];
+			document.write(arr);
+			NORMAL.BubbleSort(arr);
+			document.write("<br />");
+			document.write(arr);
+			
+			// 冒泡排序优化
+			document.write("<h2>冒泡排序优化</h2>");
+			var arr = [9,1,5,8,3,7,4,6,2];
+			document.write(arr);
+			BEST.BubbleSort(arr);
+			document.write("<br />");
+			document.write(arr);
+		</script>
+	</body>
+</html>
